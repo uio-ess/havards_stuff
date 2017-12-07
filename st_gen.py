@@ -1,12 +1,29 @@
 import os
+import subprocess
+import usb
 
 print(os.getcwd())
 
 manta125 = False
-manta235 = True
-css100 = True
+manta235 = False
+ccs100 = False
 PM100 = False
 LPR59 = False
+
+arv_output = str(subprocess.check_output(['arv-tool-0.4', 'control', 'DeviceModelName']))
+if(not(arv_output.find('235B') == -1)):
+    manta235 = True
+
+if(not(arv_output.find('125B') == -1)):
+    manta125B = True
+
+for bus in usb.busses():
+    for dev in bus.devices:
+        if(dev.idVendor == 4883 and dev.idProduct == 32882):
+            PM100 = True
+        if(dev.idVendor == 4883 and
+           (dev.idProduct == 32897 or dev.idProduct == 32896)):
+            ccs100 = True
 
 
 def dump_file_to_file(in_name, out_file):
@@ -21,7 +38,7 @@ with open('/tmp/st_gen.cmd', 'w') as f:
         dump_file_to_file('st_components/manta125.txt', f)
     if(manta235):
         dump_file_to_file('st_components/manta235.txt', f)
-    if(css100):
+    if(ccs100):
         dump_file_to_file('st_components/ccs100.txt', f)
     if(PM100):
         dump_file_to_file('st_components/PM100.txt', f)
