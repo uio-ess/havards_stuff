@@ -1,0 +1,36 @@
+
+################################################################################
+## Allied Vision Manta G235B
+################################################################################
+
+epicsEnvSet("PREFIX", "CAM1:")
+epicsEnvSet("PORT",   "CAM1")
+epicsEnvSet("QSIZE",  "20")
+epicsEnvSet("XSIZE",  "1936")
+epicsEnvSet("YSIZE",  "1216")
+epicsEnvSet("NCHANS", "2048")
+epicsEnvSet("CBUFFS", "500")
+
+aravisCameraConfig("$(PORT)", "Allied Vision Technologies-50-0503373249")
+
+# asynSetTraceMask("$(PORT)", 0, 0x21)
+dbLoadRecords("$(ADARAVIS)/db/aravisCamera.template",   "P=$(PREFIX),R=det1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(ADARAVIS)/db/AVT_Manta_G235B.template","P=$(PREFIX),R=det1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+
+# Create a standard arrays plugin
+# Allow for images up to 1292x964x3 for RGB
+NDStdArraysConfigure("$(PORT)Image1", 5, 0, "$(PORT)", 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=$(PORT)Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=7062528")
+NDStdArraysConfigure("$(PORT)Image2", 5, 0, "$(PORT)", 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image2:,PORT=$(PORT)Image2,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=7062528")
+NDStdArraysConfigure("$(PORT)Image3", 5, 0, "$(PORT)", 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image3:,PORT=$(PORT)Image3,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=7062528")
+
+# Load all other plugins using commonPlugins.cmd
+< $(TOP)/iocBoot/$(IOC)/commonPlugins.cmd
+
+#set_requestfile_path("$(ADARAVIS)/aravisGigEApp/Db")
+
+#asynSetTraceMask("$(PORT)",0,255)
+#asynSetTraceMask("$(PORT)",0,3)
+

@@ -1,0 +1,17 @@
+
+################################################################################
+
+# For Autosave, before iocInit is called
+#set_requestfile_path(".")
+#set_savefile_path("./autosave")
+#set_pass0_restoreFile("auto_settings.sav")
+#set_pass1_restoreFile("auto_settings.sav")
+
+# optional custom PVs
+#dbLoadRecords("$(TOP)/db/img.db", "P=IMG:,R=")
+
+iocInit()
+
+# save things every thirty seconds
+#create_monitor_set("cam_auto_settings.req", 30,"P=$(PREFIX)")
+#create_monitor_set("ccs_auto_settings.req", 30,"P=$(PREFIX)")

@@ -1,0 +1,21 @@
+
+################################################################################
+## Thorlabs PM100USB
+################################################################################
+
+epicsEnvSet("PREFIX", "PM100:")
+epicsEnvSet("PORT",   "PM100")
+
+epicsEnvSet("STREAM_PROTOCOL_PATH", "$(TLPM100)/db")
+
+#var streamDebug 1
+
+# usbtmcConfigure(port, vendorNum, productNum, serialNumberStr, priority, flags)
+usbtmcConfigure("$(PORT)")
+asynSetTraceIOMask("$(PORT)",0,0xff)
+#asynSetTraceMask("$(PORT)",0,0xff)
+
+# Load record instances
+dbLoadRecords("$(TLPM100)/db/tlPM100.template","P=$(PREFIX),R=,PORT=$(PORT)")
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=asyn,PORT=$(PORT),ADDR=0,OMAX=100,IMAX=100")
+
