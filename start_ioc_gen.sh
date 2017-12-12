@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python ~/git/haavards_stuff/st_gen.py
+python ~/git/havards_stuff/st_gen.py
 source $HOME/bin/ng3esetup.sh
 which caget >/dev/null 2>&1
 if [ $? -ne 0 ]; then

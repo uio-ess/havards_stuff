@@ -22,9 +22,11 @@ if(not(arv_output.find('125B') == -1)):
 for bus in usb.busses():
     for dev in bus.devices:
         if(dev.idVendor == 4883 and dev.idProduct == 32882):
+            print('Found PM100')
             PM100 = True
         if(dev.idVendor == 4883 and
            (dev.idProduct == 32897 or dev.idProduct == 32896)):
+            print('Fount ccs100')
             ccs100 = True
 
 
