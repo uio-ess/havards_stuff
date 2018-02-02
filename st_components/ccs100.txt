@@ -5,6 +5,7 @@
 
 # Resource string: USB::VID::PID::SERIAL::RAW
 epicsEnvSet("RSCSTR", "USB::0x1313::0x8081::M00407489::RAW")
+#epicsEnvSet("RSCSTR", "USB::0x1313::0x8081::M00462436::RAW")
 
 epicsEnvSet("PREFIX", "CCS1:")
 epicsEnvSet("PORT",   "CCS1")

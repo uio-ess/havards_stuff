@@ -12,11 +12,14 @@ LPR59 = False
 
 # Check for camera
 arv_output = str(subprocess.check_output(['arv-tool-0.4', 'control', 'DeviceModelName']))
+print(arv_output)
 if(not(arv_output.find('235B') == -1)):
+    print('Found Manta 235')
     manta235 = True
 
 if(not(arv_output.find('125B') == -1)):
-    manta125B = True
+    print('Found Manta 125')
+    manta125 = True
 
 # Check for known USB devices
 for bus in usb.busses():
