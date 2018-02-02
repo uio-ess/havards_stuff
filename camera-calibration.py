@@ -89,6 +89,7 @@ def photons_emitted(fname, sample, exposure_time, focal_length=50, f_number=2.0)
     """
     Photons emitted from sample per MeV
     """
+    print('\nSample: ' + sample + ', exposure time = ' + str(exposure_time))
     with h5py.File(fname, 'r') as h5f:
         photons_absorbed = photons_on_sensor(fname, sample, exposure_time)
         current = h5f.get(sample).attrs['BeamCurrent']
