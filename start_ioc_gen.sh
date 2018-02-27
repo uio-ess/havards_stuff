@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python ~/git/havards_stuff/st_gen.py
+# python ~/git/havards_stuff/st_gen.py
 
 source $HOME/bin/source-me
 which caget >/dev/null 2>&1

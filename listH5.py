@@ -1,3 +1,4 @@
+#!/home/dev/pyenvs/ocl/bin/python
 import h5py
 import matplotlib.pyplot as plt
 import argparse
@@ -20,7 +21,10 @@ def visitFunction(name, obj, plotp, match):
             plt.colorbar()
             plt.show()
         if(len(obj[:].shape) == 1):
-            dim = min(obj.len(), 3600)
+            dim = obj.len()
+            if(obj.attrs.get('pvname') and
+               obj.attrs['pvname'].find('CCS1') == 0):
+                dim = 3600
             plt.plot(obj[0:dim])
             plt.show()
 
@@ -51,3 +55,11 @@ if __name__ == '__main__':
         for key, val in root.attrs.items():
             print('    ' + str(key) + ': ' + str(val))
         f.visititems(lambda obj, name: visitFunction(obj, name, args.plot, args.match))
+
+# filename = '/tmp/0000000000000014-Chromox.h5'
+# with h5py.File(filename, 'r') as f:
+#     root = f.get('/')
+#     print('/')
+#     for key, val in root.attrs.items():
+#         print('    ' + str(key) + ': ' + str(val))
+#     f.visititems(lambda obj, name: visitFunction(obj, name, True, False))
