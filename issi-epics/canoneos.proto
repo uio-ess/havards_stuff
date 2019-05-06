@@ -1,0 +1,31 @@
+# Terminator = ;
+ReplyTimeout = 10000; # 10 sec is very long, for keyboard input
+ReadTimeout = 1000;   # also long for keyboard input
+
+getLens {
+	out "getLens";
+	in "Lens=%50[0-9a-zA-Z./ ]";
+}
+
+setFocus{
+ 	out "setFocus=%i";
+ 	in "Focus=%i";
+ 	in "focusDone";
+}
+
+setAper{
+ 	out "setAper=%s";
+ 	in "Iris=%s";
+}
+
+ping{
+	out "ping";
+}
+
+getAper{
+	in "Current=%*i,%*i,%s";
+}
+
+getFocus{
+	in "Current=%*i,%i,%*s";
+}

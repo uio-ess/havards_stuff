@@ -1,0 +1,33 @@
+record (stringin, "$(P)lens")
+{
+       field (SCAN, "10 second")
+       field (DTYP, "stream")
+       field (INP, "@canoneos.proto getLens $(BUS)")
+}
+record (ao, "$(P)setFocus"){
+        field (SCAN, "Passive")
+        field (DTYP, "stream")
+        field (OUT, "@canoneos.proto setFocus $(BUS)")
+}
+record (ai, "$(P)getFocus"){
+        field (SCAN, "I/O Intr")
+        field (DTYP, "stream")
+        field (INP, "@canoneos.proto getFocus $(BUS)")
+}
+record (bo, $(P)ping){
+       field (SCAN, "Passive")
+       field (DTYP, "stream")
+       field (OUT, "@canoneos.proto ping $(BUS)")
+}
+
+record (stringout, "$(P)setAper"){
+        field (SCAN, "Passive")
+        field (DTYP, "stream")
+        field (OUT, "@canoneos.proto setAper $(BUS)")
+}
+
+record (stringin, "$(P)getAper"){
+        field (SCAN, "I/O Intr")
+        field (DTYP, "stream")
+        field (INP, "@canoneos.proto getAper $(BUS)")
+}
