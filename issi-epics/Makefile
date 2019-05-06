@@ -1,1 +1,0 @@
-../../StreamDevice/canonEOS/Makefile
