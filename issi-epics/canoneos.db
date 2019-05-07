@@ -1,6 +1,6 @@
 record (stringin, "$(P)lens")
 {
-       field (SCAN, "10 second")
+       field (SCAN, "I/O Intr")
        field (DTYP, "stream")
        field (INP, "@canoneos.proto getLens $(BUS)")
 }

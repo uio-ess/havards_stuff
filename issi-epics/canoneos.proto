@@ -3,7 +3,6 @@ ReplyTimeout = 10000; # 10 sec is very long, for keyboard input
 ReadTimeout = 1000;   # also long for keyboard input
 
 getLens {
-	out "getLens";
 	in "Lens=%50[0-9a-zA-Z./ ]";
 }
 
@@ -19,7 +18,9 @@ setAper{
 }
 
 ping{
+	out "getLens";
 	out "ping";
+	in "ISactive=%i"
 }
 
 getAper{
